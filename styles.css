@@ -1,22 +1,22 @@
 :root {
-    --primary-color: #333;
-    --secondary-color: #f5f5f5;
-    --accent-color: #666;
+    --primary-color: #3498db;
+    --secondary-color: #ffffff;
+    --accent-color: #ecf0f1;
+    --text-color: #2c3e50;
+    --border-color: #bdc3c7;
     --transition-speed: 0.3s;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: var(--primary-color);
     background-color: var(--secondary-color);
-    transition: background-color var(--transition-speed);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
 }
 
 #app {
@@ -30,19 +30,17 @@ header {
     margin-bottom: 30px;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+h1, h2, h3 {
     color: var(--primary-color);
 }
 
 nav {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
 }
 
-.nav-btn {
+.nav-btn, button {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     border: none;
@@ -52,57 +50,49 @@ nav {
     transition: background-color var(--transition-speed);
 }
 
-.nav-btn:hover {
-    background-color: var(--accent-color);
+.nav-btn:hover, button:hover {
+    background-color: #2980b9;
 }
 
 .screen {
-    background-color: #fff;
+    background-color: var(--secondary-color);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    transition: transform var(--transition-speed);
 }
 
-.screen:hover {
-    transform: translateY(-5px);
-}
-
-h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: var(--primary-color);
+.hidden {
+      opacity: 0;
+      pointer-events: none;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
 }
 
 input[type="text"],
 input[type="number"] {
     padding: 10px;
-    border: 1px solid var(--accent-color);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 1rem;
 }
 
 button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color var(--transition-speed);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-    background-color: var(--accent-color);
+button:active {
+      transform: translateY(1px);
 }
-    #shoppingList {
+
+#shoppingList {
     list-style-type: none;
     padding: 0;
 }
@@ -112,38 +102,47 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid var(--accent-color);
-    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#shoppingList li:hover {
+    background-color: var(--accent-color);
+}
+
+#totalSection {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 15px;
+    border-radius: 5px;
+    text-align: right;
+    font-weight: bold;
 }
 
 #shoppingList li > * {
-    margin: 5px;
+      margin: 5px;
 }
 
 #shoppingList li input[type="number"] {
-    width: 80px;
+      width: 80px;
 }
 
 #shoppingList li button {
-    padding: 5px 10px;
-    font-size: 0.9rem;
+      padding: 5px 10px;
+      font-size: 0.9rem;
 }
 
 @media (max-width: 600px) {
-    #shoppingList li {
-      flex-direction: column;
-      align-items: flex-start;
-    }
+      #shoppingList li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-    #shoppingList li > * {
-      width: 100%;
-      margin-bottom: 5px;
-    }
+      #shoppingList li > * {
+        width: 100%;
+        margin-bottom: 5px;
+      }
 }
-#totalSection {
-    margin-top: 20px;
-    text-align: right;
-}
+
 
 .hidden {
     display: none;
@@ -199,4 +198,8 @@ button:hover {
 
 #suggestionList li:hover {
       background-color: #f0f0f0;
+}
+
+#shoppingList li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
