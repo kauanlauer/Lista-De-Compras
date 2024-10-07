@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Lista de Compras</h1>
+            <nav>
+                <button id="addItemBtn" class="nav-btn">Adicionar Item</button>
+                <button id="viewListBtn" class="nav-btn">Ver Lista</button>
+            </nav>
+        </header>
+
+        <main>
+            <section id="addItemScreen" class="screen">
+                <h2>Adicionar Novo Item</h2>
+                <form id="addItemForm">
+                    <input type="text" id="itemName" placeholder="Nome do item" required>
+                    <input type="number" id="itemQuantity" placeholder="Quantidade" required min="1">
+                    <button type="submit">Adicionar à Lista</button>
+                </form>
+            </section>
+
+            <section id="viewListScreen" class="screen hidden">
+                <h2>Sua Lista de Compras</h2>
+                <ul id="shoppingList"></ul>
+                <div id="totalSection">
+                    <h3>Total da Compra</h3>
+                    <p>Total: R$ <span id="totalAmount">0.00</span></p>
+                </div>
+                <button onclick="generateReport()">Gerar Relatório</button>
+                <button onclick="clearShoppingList()">Limpar Lista</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
