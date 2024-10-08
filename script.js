@@ -138,21 +138,24 @@ const commonItems = [
       document.getElementById('totalAmount').textContent = total.toFixed(2);
   }
 
-  function generateReport() {
-      let report = "Relatório de Compras\n\n";
-      shoppingList.forEach((item, index) => {
-          report += `${index + 1}. ${item.name} - Quantidade: ${item.quantity} - Preço: R$ ${item.price.toFixed(2)}\n`;
-      });
-      report += `\nTotal: R$ ${total.toFixed(2)}`;
+    function generateReport() {
+      let reportContent = "Lista de Compras\n\n";
+      let total = 0;
 
-      const blob = new Blob([report], { type: 'text/plain' });
+      shoppingList.forEach(item => {
+          const itemTotal = item.quantity * item.price;
+          reportContent += `${item.name} - Quantidade: ${item.quantity} - Preço: R$ ${item.price.toFixed(2)} - Total: R$ ${itemTotal.toFixed(2)}\n`;
+          total += itemTotal;
+      });
+
+      reportContent += `\nTotal da compra: R$ ${total.toFixed(2)}`;
+
+      // Criar um Blob com o conteúdo do relatório
+      const blob = new Blob([reportContent], { type: 'text/plain' });
+
+      // Criar um URL temporário para o Blob
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'relatorio_compras.txt';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-  }
-// ... (resto do código existente)
+
+      // Abrir uma nova guia com o URL temporário
+      window.open(url, '_blank');
+}// ... (resto do código existente)
