@@ -137,25 +137,37 @@ const commonItems = [
       total = shoppingList.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       document.getElementById('totalAmount').textContent = total.toFixed(2);
   }
+        function generateReport() {
+          let reportContent = "Lista de Compras\n\n";
+          let total = 0;
 
-    function generateReport() {
-      let reportContent = "Lista de Compras\n\n";
-      let total = 0;
+          shoppingList.forEach(item => {
+              const itemTotal = item.quantity * item.price;
+              reportContent += `${item.name} - Quantidade: ${item.quantity} - Preço: R$ ${item.price.toFixed(2)} - Total: R$ ${itemTotal.toFixed(2)}\n`;
+              total += itemTotal;
+          });
 
-      shoppingList.forEach(item => {
-          const itemTotal = item.quantity * item.price;
-          reportContent += `${item.name} - Quantidade: ${item.quantity} - Preço: R$ ${item.price.toFixed(2)} - Total: R$ ${itemTotal.toFixed(2)}\n`;
-          total += itemTotal;
-      });
+          reportContent += `\nTotal da compra: R$ ${total.toFixed(2)}`;
 
-      reportContent += `\nTotal da compra: R$ ${total.toFixed(2)}`;
+          // Criar um Blob com o conteúdo do relatório
+          const blob = new Blob([reportContent], { type: 'text/plain' });
 
-      // Criar um Blob com o conteúdo do relatório
-      const blob = new Blob([reportContent], { type: 'text/plain' });
+          // Criar um URL temporário para o Blob
+          const url = URL.createObjectURL(blob);
 
-      // Criar um URL temporário para o Blob
-      const url = URL.createObjectURL(blob);
+          // Criar um elemento <a> invisível
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = url;
+          a.download = 'relatorio_compras.txt';
 
-      // Abrir uma nova guia com o URL temporário
-      window.open(url, '_blank');
-}// ... (resto do código existente)
+          // Adicionar o elemento ao corpo do documento
+          document.body.appendChild(a);
+
+          // Simular um clique no elemento
+          a.click();
+
+          // Remover o elemento e revogar o URL
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }
